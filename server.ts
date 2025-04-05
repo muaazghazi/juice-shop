@@ -25,6 +25,7 @@ import config from 'config'
 import path from 'path'
 import morgan from 'morgan'
 import colors from 'colors/safe'
+import lusca from 'lusca'
 import * as utils from './lib/utils'
 import * as Prometheus from 'prom-client'
 import datacreator from './data/datacreator'
@@ -279,6 +280,7 @@ restoreOverwrittenFilesWithOriginals().then(() => {
 
   app.use(express.static(path.resolve('frontend/dist/frontend')))
   app.use(cookieParser('kekse'))
+  app.use(lusca.csrf())
   // vuln-code-snippet end directoryListingChallenge accessLogDisclosureChallenge
 
   /* Configure and enable backend-side i18n */
